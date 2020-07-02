@@ -13,10 +13,8 @@ branches:
     - master
 
 deploy:
-  provider: pages
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
+  provider: pages:git
+  token: $GITHUB_TOKEN
+  edge: true # opt in to dpl v2
   keep_history: true
-  local_dir: 'dist'
-  on:
-    branch: master
+  local_dir: dist
