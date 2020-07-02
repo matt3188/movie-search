@@ -8,7 +8,7 @@ script:
   - npm run build
 
 deploy:
-  provider: pages:git
+  provider: pages
   token: $GITHUB_TOKEN
   edge: true # opt in to dpl v2
   cleanup: false
