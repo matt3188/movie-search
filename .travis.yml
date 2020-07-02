@@ -1,20 +1,18 @@
 language: node_js
 node_js:
-  - stable
-cache:
-  directories:
-    - node_modules
-script:
-  - npm run test:unit
-  - npm run build
+ - "node"
 
-branches:
-  only:
-    - master
+  cache: npm
+
+script:
+  - npm run build
 
 deploy:
   provider: pages:git
   token: $GITHUB_TOKEN
   edge: true # opt in to dpl v2
+  cleanup: false
   keep_history: true
   local_dir: dist
+  on:
+    branch: master
