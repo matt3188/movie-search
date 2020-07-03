@@ -1,9 +1,11 @@
 <template>
   <div class="home">
     <SearchBar @search="search" />
-    <div v-for="movie in results.Search" :key="movie.id">
-      <Movie :data="movie" />
-    </div>
+    <ul class="results">
+      <li v-for="movie in searchResults.Search" :key="movie.id">
+        <Movie :data="movie" />
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -46,3 +48,15 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.results {
+  display: flex;
+  flex-wrap: wrap;
+
+  li {
+    flex: 0 0 33%;
+    list-style: none;
+  }
+}
+</style>
