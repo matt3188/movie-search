@@ -19,18 +19,29 @@ export default {
     SearchBar
   },
   data: () => ({
-    apiKey: process.env.VUE_APP_API_KEY,
-    searchTerm: "",
-    results: {}
+    apiKey: process.env.VUE_APP_API_KEY
   }),
+  computed: {
+    searchResults() {
+      return this.$store.state.results;
+    }
+  },
   methods: {
     search(term) {
       axios
         .get(`https://www.omdbapi.com/?s=${term}&apikey=${this.apiKey}`)
         .then(response => {
-          this.results = response.data;
+          this.onSuccess(response.data);
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+          this.onFail(error.response.data.data);
+        });
+    },
+    onSuccess(data) {
+      this.$store.dispatch("setResults", data);
+    },
+    onFail(error) {
+      console.log(error);
     }
   }
 };
