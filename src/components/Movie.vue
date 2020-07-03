@@ -1,8 +1,8 @@
 <template>
-  <div class="movie">
+  <router-link :to="`/movie/${data.imdbID}`" class="movie">
     <h3>{{ data.Title }} - {{ data.Year }}</h3>
     <img :src="data.Poster" :alt="data.Title" />
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -13,6 +13,6 @@ export default {
       type: Object,
       required: true
     }
-  },
+  }
 };
 </script>
